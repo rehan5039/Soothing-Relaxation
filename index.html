@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soothing Relaxation</title>
     <style>
-        body {
+body {
             background-color: #eff7ff;
             transition: background-color 2s ease;
             font-family: 'Arial', sans-serif;
@@ -125,9 +124,8 @@
         you into a state of tranquility and peace. Relaxing Piano Music, Sleep Music, Water Sounds, Relaxing Music,
         Meditation.</p>
 
-    <!-- Updated playlist with enhanced styling and animations -->
     <select id="audioSelector">
-        <option
+<option
             value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EQPcXCC6DnJFpTG_IGm9AeQBgSqdSSvCVuQrIpLYHMrpgA?download=1">
             Soothing Relaxation</option>
         <option
@@ -163,39 +161,58 @@
     <button id="playPauseButton">Play Song</button>
 
     <script>
-        const playPauseButton = document.getElementById('playPauseButton');
-        const audioPlayer = new Audio();
-        const audioSelector = document.getElementById('audioSelector');
-        let isPlaying = false;
+        document.addEventListener('DOMContentLoaded', async () => {
+            const playPauseButton = document.getElementById('playPauseButton');
+            const audioPlayer = new Audio();
+            const audioSelector = document.getElementById('audioSelector');
+            let isPlaying = false;
 
-        playPauseButton.addEventListener('click', () => {
-            if (isPlaying) {
-                audioPlayer.pause();
-            } else {
-                const selectedAudio = audioSelector.value;
-                if (selectedAudio) {
-                    audioPlayer.src = selectedAudio;
-                    audioPlayer.play();
-                }
+            // Check if wakeLock is supported
+            if ('wakeLock' in navigator) {
+                // Request a wake lock to prevent screen from turning off
+                const wakeLock = await navigator.wakeLock.request('screen');
+
+                // Add an event listener for when the audio player pauses
+                audioPlayer.addEventListener('pause', () => {
+                    // Release the wake lock when the audio player pauses
+                    wakeLock.release();
+                });
+
+                // Add an event listener for when the audio player plays
+                audioPlayer.addEventListener('play', async () => {
+                    // Request a new wake lock when the audio player plays
+                    const wakeLock = await navigator.wakeLock.request('screen');
+                });
             }
-            isPlaying = !isPlaying;
-            playPauseButton.classList.toggle('playing', isPlaying);
-            playPauseButton.innerText = isPlaying ? 'Pause' : 'Play Song';
-        });
 
-        audioPlayer.addEventListener('play', () => {
-            document.body.style.animation = 'colorChange 10s infinite, fadeInOut 5s infinite';
-            document.body.style.animationTimingFunction = 'ease-in-out';
-            document.querySelector('h1').style.animation = 'floatAnimation 3s infinite alternate, rotateAnimation 5s infinite';
-            document.querySelector('h1').style.animationTimingFunction = 'ease-in-out';
-        });
+            playPauseButton.addEventListener('click', () => {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                } else {
+                    const selectedAudio = audioSelector.value;
+                    if (selectedAudio) {
+                        audioPlayer.src = selectedAudio;
+                        audioPlayer.play();
+                    }
+                }
+                isPlaying = !isPlaying;
+                playPauseButton.classList.toggle('playing', isPlaying);
+                playPauseButton.innerText = isPlaying ? 'Pause' : 'Play Song';
+            });
 
-        audioPlayer.addEventListener('pause', () => {
-            document.body.style.animation = 'none';
-            document.querySelector('h1').style.animation = 'none';
+            audioPlayer.addEventListener('play', () => {
+                document.body.style.animation = 'colorChange 10s infinite, fadeInOut 5s infinite';
+                document.body.style.animationTimingFunction = 'ease-in-out';
+                document.querySelector('h1').style.animation = 'floatAnimation 3s infinite alternate, rotateAnimation 5s infinite';
+                document.querySelector('h1').style.animationTimingFunction = 'ease-in-out';
+            });
+
+            audioPlayer.addEventListener('pause', () => {
+                document.body.style.animation = 'none';
+                document.querySelector('h1').style.animation = 'none';
+            });
         });
     </script>
 
 </body>
-
 </html>
