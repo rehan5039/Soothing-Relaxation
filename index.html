@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 95vh;
             overflow: hidden; /* Disable scrolling */
         }
 
@@ -47,37 +48,65 @@
         h1 {
             margin-top: 20px;
             font-size: 2.5em;
+            margin-top: 0vh;
             color: #005d99;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        #playPauseButton {
-            background-color: #00a8e8;
-            color: #fff;
-            font-size: 1.8em;
-            padding: 16px 32px;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+        #audioSelector {
+            margin-top: 2vh;
+            padding: 15px;
+            font-size: 1.3em;
+            border-radius: 12px;
+            border: 3px solid #005d99;
+            background-color: #eff7ff;
+            color: #005d99;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-top: 5vh; /* Higher position */
+            width: 70%;
         }
 
-        #playPauseButton::before {
-            content: '\25B6';
-            display: inline-block;
-            margin-right: 10px;
+        #audioSelector:hover {
+            background-color: #d9ecff;
+            transform: scale(1.05);
         }
 
-        #playPauseButton.playing::before {
-            content: '\2016';
+        #audioSelector:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 93, 153, 0.8);
         }
 
-        #playPauseButton:hover {
-            background-color: #0077b3;
-            transform: translateY(-4px) scale(1.05);
-        }
+        #playPauseButton {
+        background-color: #00a8e8;
+        color: #fff;
+        font-size: 1.8em;
+        padding: 20px 40px; /* Increased padding for better visual appeal */
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        margin-top: 2vh;
+        border-radius: 25px; /* Added border-radius for a curved design */
+        outline: none; /* Remove default focus outline */
+        background-image: linear-gradient(45deg, #0099cc, #0077b3); /* Added subtle gradient */
+    }
+
+    #playPauseButton::before {
+        content: '\25B6';
+        display: inline-block;
+        margin-right: 10px;
+        transition: transform 0.3s ease; /* Added transition for the play icon */
+    }
+
+    #playPauseButton.playing::before {
+        content: '\2016';
+    }
+
+    #playPauseButton:hover {
+        background-color: #0077b3;
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 0 12px rgba(0, 93, 153, 0.8); /* Added box-shadow for a tactile feel */
+    }
 
         .relaxing-text {
             font-size: 1.5em;
@@ -87,49 +116,86 @@
         }
     </style>
 </head>
+
 <body>
 
-<h1>Soothing Relaxation</h1>
+    <h1>Soothing Relaxation</h1>
 
-<p class="relaxing-text">Take a deep breath and immerse yourself in the calming sounds. Let the gentle melodies guide you into a state of tranquility and peace. Relaxing Piano Music, Sleep Music, Water Sounds, Relaxing Music, Meditation.</p>
+    <p class="relaxing-text">Take a deep breath and immerse yourself in the calming sounds. Let the gentle melodies guide
+        you into a state of tranquility and peace. Relaxing Piano Music, Sleep Music, Water Sounds, Relaxing Music,
+        Meditation.</p>
 
-<button id="playPauseButton">Play Song</button>
+    <!-- Updated playlist with enhanced styling and animations -->
+    <select id="audioSelector">
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EQPcXCC6DnJFpTG_IGm9AeQBgSqdSSvCVuQrIpLYHMrpgA?download=1">
+            Soothing Relaxation</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/ESKhERxpWEZItM8Hvab1z6ABWiIGurkDXWgNvr3SAUhRvw?download=1">
+            Uplifting</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EaGkbvtGLsNLiJdUJr_5PdcBI9FQfN0NE46SY1F3uuLK1Q?download=1">
+            Beethoven</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EX_gdXVESAlDshb7to6B5AQBrpQXSytN0Au-HGmoA_S0pA?download=1">
+            Deep Sleep Music</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/ES0DjPJSEkFIqiyb0q1jzW8B2jZerX_bjpHGSJ5fGuqsJg?download=1">
+            Meditation Music</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/Ed6B4IhJiY1PgjuNRX2HSXwBlqHMR00fGCOdyqTORa7oOQ?download=1">
+            Piano Music</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EcNiUI0aa9tNovrMNiK167IBoD4hdplsrRuyRhnImBwvKg?download=1">
+            Relaxed Night</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/ESUrs4EqcaVAjoCeUcv2MF4Bs81h-KCUxTSJWnpfjGdfJA?download=1">
+            Soul Therapy</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/Ee2e14KX65NPpwk2jKdeGIQBL-c4nL-wzZ6jL9D_vcB5_A?download=1">
+            Spring Meditation</option>
+        <option
+            value="https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EaJiNH7bfx1BnwtWH5ekKhgBVGavEoGwonM1njhs3Rpq7w?download=1">
+            Winter Piano</option>
+        <!-- Add more options as needed -->
+    </select>
 
-<script>
-    const playPauseButton = document.getElementById('playPauseButton');
-    const audioPlayer = new Audio('https://32yk14-my.sharepoint.com/:u:/g/personal/rehan_32yk14_onmicrosoft_com/EQPcXCC6DnJFpTG_IGm9AeQBgSqdSSvCVuQrIpLYHMrpgA?download=1');
-    let isPlaying = false;
+    <button id="playPauseButton">Play Song</button>
 
-    playPauseButton.addEventListener('click', () => {
-        if (isPlaying) {
-            audioPlayer.pause();
-        } else {
-            audioPlayer.play();
-        }
-        isPlaying = !isPlaying;
-        playPauseButton.classList.toggle('playing', isPlaying);
-        playPauseButton.innerText = isPlaying ? 'Pause' : 'Play Song';
-    });
+    <script>
+        const playPauseButton = document.getElementById('playPauseButton');
+        const audioPlayer = new Audio();
+        const audioSelector = document.getElementById('audioSelector');
+        let isPlaying = false;
 
-    audioPlayer.addEventListener('play', () => {
-        document.body.style.animation = 'colorChange 10s infinite, fadeInOut 5s infinite';
-        document.body.style.animationTimingFunction = 'ease-in-out';
-        document.querySelector('h1').style.animation = 'floatAnimation 3s infinite alternate, rotateAnimation 5s infinite';
-        document.querySelector('h1').style.animationTimingFunction = 'ease-in-out';
-    });
+        playPauseButton.addEventListener('click', () => {
+            if (isPlaying) {
+                audioPlayer.pause();
+            } else {
+                const selectedAudio = audioSelector.value;
+                if (selectedAudio) {
+                    audioPlayer.src = selectedAudio;
+                    audioPlayer.play();
+                }
+            }
+            isPlaying = !isPlaying;
+            playPauseButton.classList.toggle('playing', isPlaying);
+            playPauseButton.innerText = isPlaying ? 'Pause' : 'Play Song';
+        });
 
-    audioPlayer.addEventListener('pause', () => {
-        document.body.style.animation = 'none';
-        document.querySelector('h1').style.animation = 'none';
-    });
-</script>
+        audioPlayer.addEventListener('play', () => {
+            document.body.style.animation = 'colorChange 10s infinite, fadeInOut 5s infinite';
+            document.body.style.animationTimingFunction = 'ease-in-out';
+            document.querySelector('h1').style.animation = 'floatAnimation 3s infinite alternate, rotateAnimation 5s infinite';
+            document.querySelector('h1').style.animationTimingFunction = 'ease-in-out';
+        });
 
-<style>
-    @keyframes floatAnimation {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-8px) scale(1.05); }
-    }
-</style>
+        audioPlayer.addEventListener('pause', () => {
+            document.body.style.animation = 'none';
+            document.querySelector('h1').style.animation = 'none';
+        });
+    </script>
 
 </body>
+
 </html>
