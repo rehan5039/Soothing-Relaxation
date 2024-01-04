@@ -68,3 +68,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 8. **Note:**
    - Ensure that the audio file URL is accessible, as it's directly linked in the script.
 
+<p>Click the link below to view the website:</p>
+
+  <a href="https://soothing-relaxation.netlify.app/" target="_blank">View Website</a>
